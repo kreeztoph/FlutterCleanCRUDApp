@@ -12,6 +12,6 @@ class CreateUser extends UseCase<void, UserModel> {
 
   @override
   Future<Either<Failure, void>> call(UserModel params) async {
-    return await repository.createUser(params.name, params.age);
+    return await repository.createUser(params);
   }
 }

@@ -18,8 +18,8 @@ class UserRepoImpl implements UserRepository {
   );
 
   @override
-  Future<Either<Failure, void>> createUser(String name, int age) {
-    return _UserIntercept(() => _userRemoteDataSource.createUser(name, age));
+  Future<Either<Failure, void>> createUser(UserModel params) {
+    return _UserIntercept(() => _userRemoteDataSource.createUser(params));
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebasecrud/core/error/failure.dart';
+import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 import 'package:firebasecrud/features/crudapp/domain/entities/user.dart';
 import 'package:firebasecrud/features/crudapp/domain/usecases/create_user.dart';
 
@@ -19,9 +20,10 @@ class UserCubit extends Cubit<UserState> {
   Future<void> createUserFront(String name, int age) async {
     emit(UserLoading());
     final user = await createUser(
-      Params(name: name, age: age),
+      UserModel(name: name, age: age),
     );
-    emit(user.fold((failure) => Error(message: mapFailureToMessage(failure)), (r) => null))
+    emit(user.fold((failure) => Error(message: mapFailureToMessage(failure)),
+        (r) => null));
   }
 
   String mapFailureToMessage(Failure failure) {
