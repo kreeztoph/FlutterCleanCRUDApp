@@ -21,6 +21,7 @@ class UserCubit extends Cubit<UserState> {
     final user = await createUser(
       Params(name: name, age: age),
     );
+    emit(user.fold((failure) => Error(message: mapFailureToMessage(failure)), (r) => null))
   }
 
   String mapFailureToMessage(Failure failure) {

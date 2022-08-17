@@ -1,4 +1,4 @@
-import 'package:firebasecrud/features/add_user/domain/domain/entities/user.dart';
+import 'package:firebasecrud/features/crudapp/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({

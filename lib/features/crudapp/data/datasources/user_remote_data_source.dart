@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 
@@ -15,7 +17,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<void> createUser(String name, int age) {
     final response =
-        firebaseFirestore.collection('user').add({'name': name, 'age': age});
+        firebaseFirestore.collection('user').add(jsonEncode(toJson(age, name)));
     return response;
   }
 

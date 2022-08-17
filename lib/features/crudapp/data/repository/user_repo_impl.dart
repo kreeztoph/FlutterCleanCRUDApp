@@ -18,20 +18,18 @@ class UserRepoImpl implements UserRepository {
   );
 
   @override
-  Future<Either<Failure, void>> createUser(UserModel params) {
-    throw UnimplementedError();
+  Future<Either<Failure, void>> createUser(String name, int age) {
+    return _UserIntercept(() => _userRemoteDataSource.createUser(name, age));
   }
 
   @override
   Future<Either<Failure, void>> deleteUser(String name) {
-    // TODO: implement deleteUser
-    throw UnimplementedError();
+    return _UserIntercept(() => _userRemoteDataSource.deleteUser(name));
   }
 
   @override
   Future<Either<Failure, void>> editUser(UserModel params) {
-    // TODO: implement editUser
-    throw UnimplementedError();
+    return _UserIntercept(() => _userRemoteDataSource.editUser(params));
   }
 
   Future<Either<Failure, void>> _UserIntercept(_Checker checker) async {
