@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 
 abstract class UserRemoteDataSource {
-  Future<void> createUser(String name, int age);
+  Future<void> createUser(UserModel params);
   Future<void> deleteUser(String name);
   Future<void> editUser(UserModel params);
 }
@@ -15,9 +15,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   UserRemoteDataSourceImpl({required this.firebaseFirestore});
 
   @override
-  Future<void> createUser(String name, int age) {
-    final response =
-        firebaseFirestore.collection('user').add(jsonEncode(toJson(age, name)));
+  Future<void> createUser(UserModel params) {
+    final response = firebaseFirestore.collection('user').add(params.toJson());
     return response;
   }
 
