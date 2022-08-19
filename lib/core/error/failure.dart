@@ -14,3 +14,5 @@ class CacheFailure extends Failure {}
 class FirebaseFailure extends Failure {}
 
 class GeneralFailure extends Failure {}
+
+class NetorkFailure extends Failure {}

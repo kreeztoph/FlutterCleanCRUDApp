@@ -48,6 +48,8 @@ dependencies:
   cross_connectivity: ^3.0.5
   #state management
   flutter_bloc: ^8.0.1
+  #Dependency Injection
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:

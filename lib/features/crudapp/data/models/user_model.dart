@@ -2,8 +2,8 @@ import 'package:firebasecrud/features/crudapp/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({
-    required String name,
-    required int age,
+    required String? name,
+    required int? age,
   }) : super(
           age: age,
           name: name,

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_generic_function_type_aliases
+
 import 'package:dartz/dartz.dart';
 import 'package:firebasecrud/core/error/exception.dart';
 import 'package:firebasecrud/core/error/failure.dart';
@@ -9,27 +11,27 @@ import 'package:firebasecrud/features/crudapp/domain/repository/user_repository.
 typedef Future<void> _Checker();
 
 class UserRepoImpl implements UserRepository {
-  final UserRemoteDataSource _userRemoteDataSource;
+  final UserRemoteDataSource userRemoteDataSource;
   final NetworkInfo networkInfo;
 
-  UserRepoImpl(
-    this._userRemoteDataSource,
-    this.networkInfo,
-  );
+  UserRepoImpl({
+    required this.userRemoteDataSource,
+    required this.networkInfo,
+  });
 
   @override
   Future<Either<Failure, void>> createUser(UserModel params) {
-    return _UserIntercept(() => _userRemoteDataSource.createUser(params));
+    return _UserIntercept(() => userRemoteDataSource.createUser(params));
   }
 
   @override
   Future<Either<Failure, void>> deleteUser(String name) {
-    return _UserIntercept(() => _userRemoteDataSource.deleteUser(name));
+    return _UserIntercept(() => userRemoteDataSource.deleteUser(name));
   }
 
   @override
   Future<Either<Failure, void>> editUser(UserModel params) {
-    return _UserIntercept(() => _userRemoteDataSource.editUser(params));
+    return _UserIntercept(() => userRemoteDataSource.editUser(params));
   }
 
   Future<Either<Failure, void>> _UserIntercept(_Checker checker) async {

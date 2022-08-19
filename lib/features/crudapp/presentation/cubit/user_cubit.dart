@@ -17,13 +17,13 @@ class UserCubit extends Cubit<UserState> {
           UserInitial(),
         );
 
-  Future<void> createUserFront(String name, int age) async {
+  Future<void> createUserFront(UserModel params) async {
     emit(UserLoading());
     final user = await createUser(
-      UserModel(name: name, age: age),
+      UserModel(name: params.name, age: params.age),
     );
     emit(user.fold((failure) => Error(message: mapFailureToMessage(failure)),
-        (r) => null));
+        (user) => UserLoaded()));
   }
 
   String mapFailureToMessage(Failure failure) {
@@ -35,5 +35,9 @@ class UserCubit extends Cubit<UserState> {
       default:
         return 'Unexpected Error';
     }
+  }
+
+  String mapUserCreated(User user) {
+    return 'User created Successfuly';
   }
 }

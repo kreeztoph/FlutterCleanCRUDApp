@@ -16,20 +16,20 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
 
   @override
   Future<void> createUser(UserModel params) {
-    final response = firebaseFirestore.collection('user').add(params.toJson());
+    final response = firebaseFirestore.collection('users').add(params.toJson());
     return response;
   }
 
   @override
   Future<void> deleteUser(String name) {
-    final response = firebaseFirestore.collection('user').doc(name).delete();
+    final response = firebaseFirestore.collection('users').doc(name).delete();
     return response;
   }
 
   @override
   Future<void> editUser(UserModel params) {
     final response = firebaseFirestore
-        .collection('user')
+        .collection('users')
         .doc(params.name)
         .update(params.toJson());
     return response;
