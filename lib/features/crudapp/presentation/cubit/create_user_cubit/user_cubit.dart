@@ -4,6 +4,8 @@ import 'package:firebasecrud/core/error/failure.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 import 'package:firebasecrud/features/crudapp/domain/entities/user.dart';
 import 'package:firebasecrud/features/crudapp/domain/usecases/create_user.dart';
+import 'package:firebasecrud/features/crudapp/domain/usecases/edit_user.dart';
+import 'package:firebasecrud/features/crudapp/domain/usecases/listen_user.dart';
 
 part 'user_state.dart';
 
@@ -12,6 +14,7 @@ const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
 
 class UserCubit extends Cubit<UserState> {
   final CreateUser createUser;
+
   UserCubit({required this.createUser})
       : super(
           UserInitial(),

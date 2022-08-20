@@ -43,4 +43,9 @@ class UserRepoImpl implements UserRepository {
       return left(ServerFailure());
     }
   }
+
+  @override
+  Stream<List<UserModel>> listenToUsers() {
+    return userRemoteDataSource.listUser();
+  }
 }

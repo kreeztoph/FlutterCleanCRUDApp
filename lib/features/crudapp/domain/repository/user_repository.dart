@@ -6,4 +6,5 @@ abstract class UserRepository {
   Future<Either<Failure, void>> createUser(UserModel params);
   Future<Either<Failure, void>> editUser(UserModel params);
   Future<Either<Failure, void>> deleteUser(String name);
+  Stream<List<UserModel>> listenToUsers();
 }

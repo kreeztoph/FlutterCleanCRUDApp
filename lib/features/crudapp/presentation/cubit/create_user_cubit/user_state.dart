@@ -11,14 +11,7 @@ class UserInitial extends UserState {}
 
 class UserLoading extends UserState {}
 
-class UserLoaded extends UserState {
-  // final User user;
-
-  // const UserLoaded({required this.user});
-
-  // @override
-  // List<Object> get props => [user];
-}
+class UserLoaded extends UserState {}
 
 class Error extends UserState {
   final String message;

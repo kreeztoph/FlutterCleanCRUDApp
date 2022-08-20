@@ -2,17 +2,13 @@
 
 import 'package:firebasecrud/core/error/exception.dart';
 import 'package:firebasecrud/core/error/failure.dart';
-import 'package:firebasecrud/core/globals.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
-import 'package:firebasecrud/features/crudapp/presentation/cubit/user_cubit.dart';
-import 'package:firebasecrud/features/crudapp/presentation/screens/user_created_successfully.dart';
+import 'package:firebasecrud/features/crudapp/presentation/cubit/create_user_cubit/user_cubit.dart';
 import 'package:firebasecrud/features/crudapp/presentation/widgets/loading_circle.dart';
 import 'package:firebasecrud/features/crudapp/presentation/widgets/loading_circle_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebasecrud/injection_container.dart';
-
-import 'core/globals.dart';
 
 class CreateUserPage extends StatelessWidget {
   CreateUserPage({Key? key}) : super(key: key);
@@ -20,6 +16,10 @@ class CreateUserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Create a new user'),
+          centerTitle: true,
+        ),
         body: SingleChildScrollView(
           child: buildBody(),
         ),
@@ -35,8 +35,17 @@ BlocProvider<UserCubit> buildBody() {
         child: BlocListener<UserCubit, UserState>(
       listener: (context, state) {
         if (state is UserLoaded) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('User Created')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('User Created Successfully'),
+            ),
+          );
+        } else if (state is Error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Unable to create user'),
+            ),
+          );
         }
       },
       child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
@@ -135,7 +144,5 @@ class _UserControlState extends State<UserControl> {
     controller.clear();
     BlocProvider.of<UserCubit>(context)
         .createUserFront(UserModel(name: nameInput, age: ageInput));
-    // ScaffoldMessenger.of(context)
-    //     .showSnackBar(SnackBar(content: Text('User Created Successfully')));
   }
 }

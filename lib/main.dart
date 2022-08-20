@@ -1,12 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:firebasecrud/features/crudapp/domain/usecases/create_user.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/create_user_page.dart';
-import 'package:firebasecrud/features/crudapp/presentation/screens/user_created_successfully.dart';
+import 'package:firebasecrud/features/crudapp/presentation/screens/decision_page.dart';
+import 'package:firebasecrud/features/crudapp/presentation/screens/edit_user_page.dart';
+import 'package:firebasecrud/features/crudapp/presentation/screens/list_users_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'injection_container.dart' as di;
-import 'core/globals.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,12 +23,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'CRUD App',
-        scaffoldMessengerKey: snackbarKey,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: CreateUserPage());
+      debugShowCheckedModeBanner: false,
+      title: 'CRUD App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) {
+          return DecisionPage();
+        },
+        '/create': (context) {
+          return CreateUserPage();
+        },
+        '/edit': (context) {
+          return EditUserPage();
+        },
+        '/fetch': (context) {
+          return FetchUsersPage();
+        }
+      },
+    );
   }
 }

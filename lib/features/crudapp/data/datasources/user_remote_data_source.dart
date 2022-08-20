@@ -7,6 +7,7 @@ abstract class UserRemoteDataSource {
   Future<void> createUser(UserModel params);
   Future<void> deleteUser(String name);
   Future<void> editUser(UserModel params);
+  Stream<List<UserModel>> listUser();
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -33,5 +34,11 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         .doc(params.name)
         .update(params.toJson());
     return response;
+  }
+
+  @override
+  Stream<List<UserModel>> listUser() {
+    return firebaseFirestore.collection('users').snapshots().map((event) =>
+        event.docs.map((doc) => UserModel.fromJson(doc.data())).toList());
   }
 }
