@@ -25,8 +25,8 @@ class UserRepoImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, void>> deleteUser(String name) {
-    return _UserIntercept(() => userRemoteDataSource.deleteUser(name));
+  Future<Either<Failure, void>> deleteUser(String id) {
+    return _UserIntercept(() => userRemoteDataSource.deleteUser(id));
   }
 
   @override

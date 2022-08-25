@@ -23,7 +23,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> createUserFront(UserModel params) async {
     emit(UserLoading());
     final user = await createUser(
-      UserModel(name: params.name, age: params.age),
+      UserModel(name: params.name, age: params.age, id: ''),
     );
     emit(user.fold((failure) => Error(message: mapFailureToMessage(failure)),
         (user) => UserLoaded()));

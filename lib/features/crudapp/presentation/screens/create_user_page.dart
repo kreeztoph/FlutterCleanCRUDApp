@@ -143,6 +143,6 @@ class _UserControlState extends State<UserControl> {
   void _create(BuildContext context) {
     controller.clear();
     BlocProvider.of<UserCubit>(context)
-        .createUserFront(UserModel(name: nameInput, age: ageInput));
+        .createUserFront(UserModel(name: nameInput, age: ageInput, id: ''));
   }
 }

@@ -11,7 +11,14 @@ class FetchUsersInitial extends FetchUsersState {}
 
 class FetchUsersLoading extends FetchUsersState {}
 
-class FetchUsersLoaded extends FetchUsersState {}
+class FetchUsersLoaded extends FetchUsersState {
+  final Stream<List<UserModel>> users;
+
+  FetchUsersLoaded(this.users);
+
+  @override
+  List<Object> get props => [users];
+}
 
 class FetchUsersError extends FetchUsersState {
   final String message;
