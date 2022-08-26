@@ -96,8 +96,8 @@ class _FetchUsersControlState extends State<FetchUsersControl> {
 }
 
 Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
-      String? nameInput;
-      int? ageInput;
+      String nameInput = '${userModel.name}';
+      int? ageInput = userModel.age;
       String usermodelid = '${userModel.id}';
       final controllerName = TextEditingController();
       final controllerAge = TextEditingController();
@@ -131,10 +131,8 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                           Padding(
                                             padding: const EdgeInsets.all(16.0),
                                             child: TextField(
-                                              controller:
-                                                  TextEditingController()
-                                                    ..text =
-                                                        '${userModel.name}',
+                                              controller: TextEditingController(
+                                                  text: nameInput),
                                               onChanged: ((value) {
                                                 if (value.isEmpty) {
                                                   nameInput =
@@ -148,9 +146,8 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                           Padding(
                                             padding: const EdgeInsets.all(16.0),
                                             child: TextField(
-                                              controller:
-                                                  TextEditingController()
-                                                    ..text = '${userModel.age}',
+                                              controller: TextEditingController(
+                                                  text: '$ageInput'),
                                               onChanged: ((value1) {
                                                 if (value1.isEmpty ||
                                                     value1 == 'Null' ||
@@ -168,19 +165,19 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                             child: ElevatedButton(
                                                 child: Text('Change Details'),
                                                 onPressed: () {
-                                                  // BlocProvider.of<
-                                                  //             FetchUsersCubit>(
-                                                  //         context)
-                                                  //     .editUserListPage(
-                                                  //         UserModel(
-                                                  //             id: usermodelid,
-                                                  //             name: nameInput,
-                                                  //             age: ageInput));
+                                                  BlocProvider.of<
+                                                              FetchUsersCubit>(
+                                                          context)
+                                                      .editUserListPage(
+                                                          UserModel(
+                                                              id: usermodelid,
+                                                              name: nameInput,
+                                                              age: ageInput));
                                                   Navigator.of(context).pop();
                                                   print(
                                                       '--------------------------');
                                                   print(nameInput);
-                                                  print(ageInput.runtimeType);
+                                                  print(ageInput);
                                                 }),
                                           ),
                                           IconButton(
