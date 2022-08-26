@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/create_user_page.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/decision_page.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/edit_user_page.dart';

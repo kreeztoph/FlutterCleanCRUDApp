@@ -90,13 +90,8 @@ class FetchUsersControl extends StatefulWidget {
 class _FetchUsersControlState extends State<FetchUsersControl> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-          child: Text('Get all users'),
-          onPressed: () {
-            BlocProvider.of<FetchUsersCubit>(context).fetchUserFront();
-          }),
-    );
+    BlocProvider.of<FetchUsersCubit>(context).fetchUserFront();
+    return Center();
   }
 }
 
@@ -121,6 +116,10 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                 builder: (ctx) => Padding(
                                       padding: const EdgeInsets.all(4.0),
                                       child: SimpleDialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        titlePadding: EdgeInsets.all(16),
                                         title: Text(
                                             "Are you sure you want to edit, ${userModel.name}?"),
                                         children: [
@@ -139,6 +138,17 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                                   hintText: '${userModel.age}'),
                                             ),
                                           ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(16.0),
+                                            child: ElevatedButton(
+                                                child: Text('Change Details'),
+                                                onPressed: () {}),
+                                          ),
+                                          IconButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              icon: Icon(Icons.close)),
                                         ],
                                       ),
                                     ));
