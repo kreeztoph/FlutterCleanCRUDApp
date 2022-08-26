@@ -6,6 +6,7 @@ import 'package:firebasecrud/features/crudapp/data/repository/user_repo_impl.dar
 import 'package:firebasecrud/features/crudapp/domain/repository/user_repository.dart';
 import 'package:firebasecrud/features/crudapp/domain/usecases/create_user.dart';
 import 'package:firebasecrud/features/crudapp/domain/usecases/delete_user.dart';
+import 'package:firebasecrud/features/crudapp/domain/usecases/edit_user.dart';
 import 'package:firebasecrud/features/crudapp/domain/usecases/listen_user.dart';
 import 'package:firebasecrud/features/crudapp/presentation/cubit/create_user_cubit/user_cubit.dart';
 import 'package:firebasecrud/features/crudapp/presentation/cubit/edit_user_cubit/edit_user_cubit_cubit.dart';
@@ -27,6 +28,7 @@ Future<void> init() async {
   sl.registerFactory(() => FetchUsersCubit(
         listUser: sl(),
         deleteUser: sl(),
+        editUser: sl(),
       ));
   //Usecases
   sl.registerLazySingleton(
@@ -37,6 +39,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton(
     () => DeleteUser(sl()),
+  );
+  sl.registerLazySingleton(
+    () => EditUser(sl()),
   );
   //repository
   sl.registerLazySingleton<UserRepository>(() => UserRepoImpl(

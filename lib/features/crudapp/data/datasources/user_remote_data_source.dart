@@ -36,7 +36,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   Future<void> editUser(UserModel params) {
     final response = firebaseFirestore
         .collection('users')
-        .doc(params.name)
+        .doc(params.id)
         .update(params.toJson());
     return response;
   }
