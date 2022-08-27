@@ -24,7 +24,10 @@ Future<void> init() async {
       createUser: sl(),
     ),
   );
-  sl.registerFactory(() => EditUserCubit());
+  sl.registerFactory(() => EditUserCubit(
+        editUser: sl(),
+        listUser: sl(),
+      ));
   sl.registerFactory(() => FetchUsersCubit(
         listUser: sl(),
         deleteUser: sl(),

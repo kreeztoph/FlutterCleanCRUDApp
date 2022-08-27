@@ -99,8 +99,8 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
       String nameInput = '${userModel.name}';
       int? ageInput = userModel.age;
       String usermodelid = '${userModel.id}';
-      final controllerName = TextEditingController();
-      final controllerAge = TextEditingController();
+      // final controllerName = TextEditingController();
+      // final controllerAge = TextEditingController();
       return Card(
         color: Colors.blue,
         child: Padding(
@@ -149,9 +149,7 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                               controller: TextEditingController(
                                                   text: '$ageInput'),
                                               onChanged: ((value1) {
-                                                if (value1.isEmpty ||
-                                                    value1 == 'Null' ||
-                                                    value1 == null) {
+                                                if (value1.isEmpty) {
                                                   ageInput = int.parse(
                                                       '${userModel.age}');
                                                 } else {
@@ -174,10 +172,6 @@ Widget buildUserList(UserModel userModel) => Builder(builder: (context) {
                                                               name: nameInput,
                                                               age: ageInput));
                                                   Navigator.of(context).pop();
-                                                  print(
-                                                      '--------------------------');
-                                                  print(nameInput);
-                                                  print(ageInput);
                                                 }),
                                           ),
                                           IconButton(

@@ -5,6 +5,7 @@ import 'package:firebasecrud/core/error/failure.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 import 'package:firebasecrud/features/crudapp/presentation/cubit/create_user_cubit/user_cubit.dart';
 import 'package:firebasecrud/features/crudapp/presentation/cubit/edit_user_cubit/edit_user_cubit_cubit.dart';
+import 'package:firebasecrud/features/crudapp/presentation/widgets/loading_circle.dart';
 import 'package:firebasecrud/features/crudapp/presentation/widgets/loading_circle_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,100 +36,44 @@ class EditUserPage extends StatelessWidget {
   }
 }
 
-// BlocProvider<EditUserCubit> buildBody() {
-//   return BlocProvider(
-//     create: (_) => sl<EditUserCubit>(),
-//     child: Center(
-//         child: BlocListener<UserCubit, UserState>(
-//       listener: (context, state) {
-//         if (state is UserLoaded) {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             SnackBar(
-//               content: Text('User Edited Successfully'),
-//             ),
-//           );
-//         } else if (state is Error) {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             SnackBar(
-//               content: Text('Unable to Edit user'),
-//             ),
-//           );
-//         }
-//       },
-//       child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-//         if (state is UserInitial) {
-//           return UserControl();
-//         } else if (state is UserLoading) {
-//           return LoadingCircle2();
-//         } else {
-//           return UserControl();
-//         }
-//       }),
-//     )),
-//   );
-// }
+BlocProvider<EditUserCubit> buildbody() {
+  return BlocProvider(
+      create: (_) => sl<EditUserCubit>(),
+      child: Center(
+        child: BlocBuilder<EditUserCubit, EditUserCubitState>(
+            builder: ((context, state) {
+          if (state is EditUserCubitInitial) {
+            return LoadingCircle2();
+          } else if (state is EditUserCubitLoading) {
+            return LoadingCircle();
+          }
+          if (state is EditUserCubitLoaded) {
+            final users = state.users;
+            return StreamBuilder<List<UserModel>>(builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return (Text('Something went wrong'));
+              } else if (snapshot.hasData) {
+                final user = snapshot.data!;
+                return ListView.builder(itemBuilder: itemBuilder);
+              } else {
+                return LoadingCircle();
+              }
+            });
+          } else {
+            return Center();
+          }
+        })),
+      ));
+}
 
-// class UserControl extends StatefulWidget {
-//   const UserControl({Key? key}) : super(key: key);
+class EditUserControls extends StatefulWidget {
+  const EditUserControls({Key? key}) : super(key: key);
 
-//   @override
-//   State<UserControl> createState() => _UserControlState();
-// }
+  @override
+  State<EditUserControls> createState() => _EditUserControlsState();
+}
 
-// class _UserControlState extends State<UserControl> {
-//   String? nameInput;
-//   int? ageInput;
-//   final controller = TextEditingController();
-//   @override
-//   Widget build(BuildContext context) {
-//     final screensize = MediaQuery.of(context).size;
-//     return Padding(
-//       padding: const EdgeInsets.all(16.0),
-//       child: Column(
-//         children: [
-//           SizedBox(
-//             height: screensize.height / 40,
-//           ),
-//           const Align(
-//             alignment: Alignment.center,
-//             child: Text(
-//               'Edit a User',
-//               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//             ),
-//           ),
-//           SizedBox(
-//             height: screensize.height / 20,
-//           ),
-//           TextField(
-//             decoration: InputDecoration(
-//               border: OutlineInputBorder(
-//                 borderRadius: BorderRadius.circular(15),
-//               ),
-//               hintText: 'Find a user by name',
-//             ),
-//             onChanged: ((value) {
-//               nameInput = value;
-//             }),
-//           ),
-//           SizedBox(
-//             height: screensize.height / 40,
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Expanded(
-//                 child: ElevatedButton(
-//                   style: ElevatedButton.styleFrom(
-//                       shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(15))),
-//                   onPressed: () {},
-//                   child: const Text('Find Users'),
-//                 ),
-//               ),
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+class _EditUserControlsState extends State<EditUserControls> {
+  @override
+  Widget build(BuildContext context) {}
+}
