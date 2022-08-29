@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:firebasecrud/core/error/failure.dart';
 import 'package:firebasecrud/core/usecases/usecase.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';

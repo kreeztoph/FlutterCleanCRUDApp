@@ -35,7 +35,9 @@ class DecisionPage extends StatelessWidget {
                           HomeGridView(
                             color: Colors.red,
                             action: 'Delete',
-                            page: () {},
+                            page: () {
+                              Navigator.pushNamed(context, '/delete');
+                            },
                           ),
                           HomeGridView(
                             color: Colors.blue,

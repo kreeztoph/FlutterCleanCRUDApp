@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, prefer_generic_function_type_aliases
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebasecrud/core/error/exception.dart';
 import 'package:firebasecrud/core/error/failure.dart';
@@ -47,5 +48,10 @@ class UserRepoImpl implements UserRepository {
   @override
   Stream<List<UserModel>> listenToUsers() {
     return userRemoteDataSource.listUser();
+  }
+
+  @override
+  CollectionReference<UserModel> listPaginatedUsers() {
+    return userRemoteDataSource.listUserPaginated();
   }
 }

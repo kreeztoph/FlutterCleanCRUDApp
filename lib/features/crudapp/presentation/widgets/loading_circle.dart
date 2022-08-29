@@ -8,7 +8,7 @@ class LoadingCircle extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Center(
-        child: CircularProgressIndicator(color: Colors.blue.shade600),
+        child: CircularProgressIndicator(color: Colors.green.shade600),
       ),
     );
   }

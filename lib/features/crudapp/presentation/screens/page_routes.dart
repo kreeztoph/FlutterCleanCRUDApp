@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:firebasecrud/features/crudapp/presentation/screens/create_user_page.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/decision_page.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/list_users_page.dart';

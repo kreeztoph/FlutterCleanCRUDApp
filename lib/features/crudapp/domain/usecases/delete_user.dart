@@ -9,6 +9,7 @@ class DeleteUser extends UseCase<void, String> {
   DeleteUser(this.repository);
 
   @override
+  // ignore: avoid_renaming_method_parameters
   Future<Either<Failure, void>> call(String id) async {
     return await repository.deleteUser(id);
   }

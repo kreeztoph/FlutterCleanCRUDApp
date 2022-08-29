@@ -1,10 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
 
-import 'package:firebasecrud/core/error/exception.dart';
-import 'package:firebasecrud/core/error/failure.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 import 'package:firebasecrud/features/crudapp/presentation/cubit/create_user_cubit/user_cubit.dart';
-import 'package:firebasecrud/features/crudapp/presentation/widgets/loading_circle.dart';
 import 'package:firebasecrud/features/crudapp/presentation/widgets/loading_circle_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

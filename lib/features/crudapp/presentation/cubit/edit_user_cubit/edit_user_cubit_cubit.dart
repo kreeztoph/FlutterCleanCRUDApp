@@ -17,8 +17,10 @@ class EditUserCubit extends Cubit<EditUserCubitState> {
   void fetchUsersForEdit() async {
     //Loading state for when the page is called
     emit(EditUserCubitLoading());
+    print('Loading...');
     //Gets the database Users
     final users = listUser();
+    print('Users gotten');
     //When loading is successful
     emit(EditUserCubitLoaded(users: users));
   }

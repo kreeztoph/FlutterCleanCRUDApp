@@ -1,14 +1,12 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
-import 'package:http/http.dart';
 
 abstract class UserRemoteDataSource {
   Future<void> createUser(UserModel params);
   Future<void> deleteUser(String name);
   Future<void> editUser(UserModel params);
   Stream<List<UserModel>> listUser();
+  CollectionReference<UserModel> listUserPaginated();
 }
 
 class UserRemoteDataSourceImpl implements UserRemoteDataSource {
@@ -46,11 +44,21 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     final response = firebaseFirestore
         .collection('users')
         .orderBy('name')
-        .limit(100)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => UserModel.fromJson(doc.data()))
             .toList());
     return response;
+  }
+
+  @override
+  CollectionReference<UserModel> listUserPaginated() {
+    final querypost = FirebaseFirestore.instance
+        .collection('users')
+        .withConverter<UserModel>(
+            fromFirestore: (snapshot, _) =>
+                UserModel.fromJson(snapshot.data()!),
+            toFirestore: (user, _) => user.toJson());
+    return querypost;
   }
 }

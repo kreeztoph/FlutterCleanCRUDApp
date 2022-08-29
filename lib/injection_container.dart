@@ -12,7 +12,6 @@ import 'package:firebasecrud/features/crudapp/presentation/cubit/create_user_cub
 import 'package:firebasecrud/features/crudapp/presentation/cubit/edit_user_cubit/edit_user_cubit_cubit.dart';
 import 'package:firebasecrud/features/crudapp/presentation/cubit/fetch_users_cubit/fetch_users_cubit.dart';
 import 'package:get_it/get_it.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;

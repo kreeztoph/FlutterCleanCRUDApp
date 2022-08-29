@@ -1,8 +1,8 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
 
-import 'package:firebasecrud/features/crudapp/data/models/user_model.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/create_user_page.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/decision_page.dart';
+import 'package:firebasecrud/features/crudapp/presentation/screens/delete_users_screen.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/edit_user_page.dart';
 import 'package:firebasecrud/features/crudapp/presentation/screens/list_users_page.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +42,13 @@ class MyApp extends StatelessWidget {
         },
         '/fetch': (context) {
           return FetchUsersPage();
+        },
+        '/delete': (context) {
+          return DeleteUserListPage();
         }
       },
 
-      // home: FetchUsersPage(),
+      // home: DeleteUserListPage(),
     );
   }
 }
