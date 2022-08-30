@@ -1,10 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages, prefer_const_constructors
-
-import 'package:firebasecrud/features/crudapp/presentation/screens/create_user_page.dart';
-import 'package:firebasecrud/features/crudapp/presentation/screens/decision_page.dart';
-import 'package:firebasecrud/features/crudapp/presentation/screens/delete_users_screen.dart';
-import 'package:firebasecrud/features/crudapp/presentation/screens/edit_user_page.dart';
-import 'package:firebasecrud/features/crudapp/presentation/screens/list_users_page.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/create_user_page.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/decision_page.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/delete_users_screen.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/edit_user_page.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/list_users_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'injection_container.dart' as di;

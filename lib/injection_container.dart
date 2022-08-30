@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cross_connectivity/cross_connectivity.dart';
 import 'package:firebasecrud/core/network/network_info.dart';
-import 'package:firebasecrud/features/crudapp/data/datasources/user_remote_data_source.dart';
-import 'package:firebasecrud/features/crudapp/data/repository/user_repo_impl.dart';
-import 'package:firebasecrud/features/crudapp/domain/repository/user_repository.dart';
-import 'package:firebasecrud/features/crudapp/domain/usecases/create_user.dart';
-import 'package:firebasecrud/features/crudapp/domain/usecases/delete_user.dart';
-import 'package:firebasecrud/features/crudapp/domain/usecases/edit_user.dart';
-import 'package:firebasecrud/features/crudapp/domain/usecases/listen_user.dart';
-import 'package:firebasecrud/features/crudapp/presentation/cubit/create_user_cubit/user_cubit.dart';
-import 'package:firebasecrud/features/crudapp/presentation/cubit/edit_user_cubit/edit_user_cubit_cubit.dart';
-import 'package:firebasecrud/features/crudapp/presentation/cubit/fetch_users_cubit/fetch_users_cubit.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/data/datasources/user_remote_data_source.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/data/repository/user_repo_impl.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/domain/repository/user_repository.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/domain/usecases/create_user.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/domain/usecases/delete_user.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/domain/usecases/edit_user.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/domain/usecases/listen_user.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/cubit/create_user_cubit/user_cubit.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/cubit/edit_user_cubit/edit_user_cubit_cubit.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/cubit/fetch_users_cubit/fetch_users_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

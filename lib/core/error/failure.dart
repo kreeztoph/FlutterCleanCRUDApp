@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
@@ -15,3 +16,7 @@ class FirebaseFailure extends Failure {}
 class GeneralFailure extends Failure {}
 
 class NetorkFailure extends Failure {}
+
+class AuthFailure extends Failure {}
+
+class PlatformFailure extends Failure {}
