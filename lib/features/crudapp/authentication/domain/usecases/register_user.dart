@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class RegisterNewUser {
   final EmailPasswordRepository repository;
 
-  RegisterNewUser({required this.repository});
+  RegisterNewUser(this.repository);
 
   Future<Either<Failure, User>> call(EmailPassword params) async =>
       await repository.registerUser(params);

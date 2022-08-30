@@ -2,18 +2,18 @@
 
 import 'package:firebasecrud/features/crudapp/authentication/domain/entities/emailPassword.dart';
 
-class EmailPasswordModel extends EmailPassword {
+class EmailPasswordModel {
   final String? id;
-  final String? name;
+  final String name;
   String? password;
-  final String? email;
+  final String email;
 
   EmailPasswordModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.email,
     this.password,
-  }) : super(email: email, password: password);
+  }) : super();
 
   factory EmailPasswordModel.fromJson(Map<String, dynamic> data) {
     return EmailPasswordModel(

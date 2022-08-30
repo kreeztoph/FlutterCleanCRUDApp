@@ -3,10 +3,10 @@ import 'package:firebasecrud/core/error/failure.dart';
 import 'package:firebasecrud/features/crudapp/authentication/data/models/email_password_model.dart';
 import 'package:firebasecrud/features/crudapp/authentication/domain/repository/emailPassword_repository.dart';
 
-class CreateNewUSer {
+class CreateNewUser {
   final EmailPasswordRepository repository;
 
-  CreateNewUSer({required this.repository});
+  CreateNewUser(this.repository);
 
   Future<Either<Failure, void>> call(EmailPasswordModel params) async =>
       await repository.createNewUser(params);

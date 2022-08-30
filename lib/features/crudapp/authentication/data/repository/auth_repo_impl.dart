@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
 
 import 'package:firebasecrud/core/error/exception.dart';
 import 'package:firebasecrud/core/network/network_info.dart';
@@ -45,7 +45,7 @@ class EmailPasswordRepoImpl implements EmailPasswordRepository {
       final remoteuser = await checker();
       return Right(remoteuser);
     } on ServerException {
-      return left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 
@@ -54,16 +54,17 @@ class EmailPasswordRepoImpl implements EmailPasswordRepository {
   ) async {
     await networkInfo.isDeviceConnected;
     try {
-      final T result = func as T;
+      // ignore: await_only_futures
+      final T result = await func() as T;
       return Right(result);
     } on FirebaseAuthException {
       return Left(AuthFailure());
     } on FirebaseException {
       return Left(FirebaseFailure());
     } on PlatformException {
-      return left(PlatformFailure());
+      return Left(PlatformFailure());
     } on GeneralException {
-      return left(GeneralFailure());
+      return Left(GeneralFailure());
     }
   }
 }

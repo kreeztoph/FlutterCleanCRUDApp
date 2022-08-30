@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebasecrud/features/crudapp/authentication/data/models/email_password_model.dart';
@@ -5,8 +7,8 @@ import 'package:firebasecrud/features/crudapp/authentication/domain/entities/ema
 
 abstract class AuthRemoteDataSource {
   Future<void> postCreateUser(EmailPasswordModel params);
-  Future<User> postLoginUser(EmailPassword params);
-  Future<User> postRegisterUser(EmailPassword params);
+  Future<User?> postLoginUser(EmailPassword params);
+  Future<User?> postRegisterUser(EmailPassword params);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -18,20 +20,29 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> postCreateUser(EmailPasswordModel params) {
-    final response = firebaseAuth.createUserWithEmailAndPassword(
-        email: params.email, password: params.email);
+    final response = firebaseFirestore
+        .collection('users')
+        .add(params.toJson())
+        .then((value) => value.update({'id': value.id}));
+
     return response;
   }
 
   @override
-  Future<User> postLoginUser(EmailPassword params) {
-    // TODO: implement postLoginUser
-    throw UnimplementedError();
+  Future<User?> postLoginUser(EmailPassword params) {
+    final response = firebaseAuth
+        .signInWithEmailAndPassword(
+            email: params.email, password: params.password)
+        .then((value) => value.user);
+    return response;
   }
 
   @override
-  Future<User> postRegisterUser(EmailPassword params) {
-    // TODO: implement postRegisterUser
-    throw UnimplementedError();
+  Future<User?> postRegisterUser(EmailPassword params) {
+    final response = firebaseAuth
+        .createUserWithEmailAndPassword(
+            email: params.email, password: params.password)
+        .then((value) => value.user);
+    return response;
   }
 }

@@ -1,4 +1,8 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/create_user_page.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/delete_users_screen.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/edit_user_page.dart';
+import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/list_users_page.dart';
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/widgets/grid_view.dart';
 import 'package:flutter/material.dart';
 
@@ -35,14 +39,16 @@ class DecisionPage extends StatelessWidget {
                             color: Colors.red,
                             action: 'Delete',
                             page: () {
-                              Navigator.pushNamed(context, '/delete');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => DeleteUserListPage()));
                             },
                           ),
                           HomeGridView(
                             color: Colors.blue,
                             action: 'Add ',
                             page: () {
-                              Navigator.pushNamed(context, '/create');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CreateUserPage()));
                             },
                           ),
                         ],
@@ -57,14 +63,16 @@ class DecisionPage extends StatelessWidget {
                             color: Colors.amber,
                             action: 'Edit',
                             page: () {
-                              Navigator.pushNamed(context, '/edit');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => EditUserPage()));
                             },
                           ),
                           HomeGridView(
                             color: Colors.green,
                             action: 'Read',
                             page: () {
-                              Navigator.pushNamed(context, '/fetch');
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => FetchUsersPage()));
                             },
                           ),
                         ],

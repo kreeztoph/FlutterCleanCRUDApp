@@ -3,10 +3,10 @@
 import 'package:equatable/equatable.dart';
 
 class EmailPassword extends Equatable {
-  final String? email;
-  final String? password;
+  final String email;
+  final String password;
 
-  EmailPassword({required this.email, this.password});
+  EmailPassword({required this.email, required this.password});
 
   @override
   List<Object?> get props => [

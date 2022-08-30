@@ -28,32 +28,33 @@ BlocProvider<UserCubit> buildBody() {
   return BlocProvider(
     create: (_) => sl<UserCubit>(),
     child: Center(
-        child: BlocListener<UserCubit, UserState>(
-      listener: (context, state) {
-        if (state is UserLoaded) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('User Created Successfully'),
-            ),
-          );
-        } else if (state is Error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Unable to create user'),
-            ),
-          );
-        }
-      },
-      child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-        if (state is UserInitial) {
-          return UserControl();
-        } else if (state is UserLoading) {
-          return LoadingCircle2();
-        } else {
-          return UserControl();
-        }
-      }),
-    )),
+      child: BlocListener<UserCubit, UserState>(
+        listener: (context, state) {
+          if (state is UserLoaded) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('User Created Successfully'),
+              ),
+            );
+          } else if (state is Error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Unable to create user'),
+              ),
+            );
+          }
+        },
+        child: BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+          if (state is UserInitial) {
+            return UserControl();
+          } else if (state is UserLoading) {
+            return LoadingCircle2();
+          } else {
+            return UserControl();
+          }
+        }),
+      ),
+    ),
   );
 }
 

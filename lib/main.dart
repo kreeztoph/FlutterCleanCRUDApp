@@ -4,6 +4,8 @@ import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/decision
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/delete_users_screen.dart';
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/edit_user_page.dart';
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/screens/list_users_page.dart';
+import 'package:firebasecrud/features/crudapp/authentication/presentation/screens/login_screen.dart';
+import 'package:firebasecrud/features/crudapp/authentication/presentation/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'injection_container.dart' as di;
@@ -28,26 +30,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) {
-          return DecisionPage();
-        },
-        '/create': (context) {
-          return CreateUserPage();
-        },
-        '/edit': (context) {
-          return EditUserPage();
-        },
-        '/fetch': (context) {
-          return FetchUsersPage();
-        },
-        '/delete': (context) {
-          return DeleteUserListPage();
-        }
-      },
+      // initialRoute: '/',
+      // routes: {
+      //   '/': (context) {
+      //     return DecisionPage();
+      //   },
+      //   '/create': (context) {
+      //     return CreateUserPage();
+      //   },
+      //   '/edit': (context) {
+      //     return EditUserPage();
+      //   },
+      //   '/fetch': (context) {
+      //     return FetchUsersPage();
+      //   },
+      //   '/delete': (context) {
+      //     return DeleteUserListPage();
+      //   }
+      // },
 
-      // home: DeleteUserListPage(),
+      home: LogInPage(),
     );
   }
 }

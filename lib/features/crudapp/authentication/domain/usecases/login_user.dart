@@ -9,7 +9,7 @@ import 'package:firebasecrud/features/crudapp/authentication/domain/repository/e
 class LoginUser {
   final EmailPasswordRepository repository;
 
-  LoginUser({required this.repository});
+  LoginUser(this.repository);
 
   Future<Either<Failure, User>> call(EmailPassword params) async =>
       await repository.loginUser(params);

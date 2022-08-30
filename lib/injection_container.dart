@@ -11,8 +11,17 @@ import 'package:firebasecrud/features/crudapp/CRUD/domain/usecases/listen_user.d
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/cubit/create_user_cubit/user_cubit.dart';
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/cubit/edit_user_cubit/edit_user_cubit_cubit.dart';
 import 'package:firebasecrud/features/crudapp/CRUD/presentation/cubit/fetch_users_cubit/fetch_users_cubit.dart';
+import 'package:firebasecrud/features/crudapp/authentication/data/datasource/auth_remote_data_source.dart';
+import 'package:firebasecrud/features/crudapp/authentication/data/repository/auth_repo_impl.dart';
+import 'package:firebasecrud/features/crudapp/authentication/domain/repository/emailPassword_repository.dart';
+import 'package:firebasecrud/features/crudapp/authentication/domain/usecases/create_new_user.dart';
+import 'package:firebasecrud/features/crudapp/authentication/domain/usecases/login_user.dart';
+import 'package:firebasecrud/features/crudapp/authentication/domain/usecases/register_user.dart';
+import 'package:firebasecrud/features/crudapp/authentication/presentation/cubit/Log_in_cubit/login_cubit.dart';
+import 'package:firebasecrud/features/crudapp/authentication/presentation/cubit/sign_up_cubit/signup_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 final sl = GetIt.instance;
 
@@ -32,6 +41,12 @@ Future<void> init() async {
         deleteUser: sl(),
         editUser: sl(),
       ));
+
+  sl.registerFactory(
+    () => SignupCubit(registerNewUser: sl()),
+  );
+
+  sl.registerFactory(() => LoginCubit(loginUser: sl()));
   //Usecases
   sl.registerLazySingleton(
     () => CreateUser(sl()),
@@ -45,9 +60,24 @@ Future<void> init() async {
   sl.registerLazySingleton(
     () => EditUser(sl()),
   );
+  sl.registerLazySingleton(
+    () => RegisterNewUser(sl()),
+  );
+  sl.registerLazySingleton(
+    () => LoginUser(sl()),
+  );
+  sl.registerLazySingleton(
+    () => CreateNewUser(sl()),
+  );
+
   //repository
   sl.registerLazySingleton<UserRepository>(() => UserRepoImpl(
         userRemoteDataSource: sl(),
+        networkInfo: sl(),
+      ));
+
+  sl.registerLazySingleton<EmailPasswordRepository>(() => EmailPasswordRepoImpl(
+        authRemoteDataSource: sl(),
         networkInfo: sl(),
       ));
 
@@ -63,10 +93,15 @@ Future<void> init() async {
       sl(),
     ),
   );
+  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(
+        firebaseFirestore: sl(),
+        firebaseAuth: sl(),
+      ));
 
   //External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => Connectivity());
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
+  sl.registerLazySingleton(() => FirebaseAuth.instance);
 }
