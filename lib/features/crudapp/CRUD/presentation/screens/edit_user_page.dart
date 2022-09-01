@@ -60,9 +60,9 @@ BlocProvider<EditUserCubit> buildbody() {
                                 MaterialPageRoute(
                                   builder: (context) => EditPageDetails(
                                     user: UserModel(
-                                        name: '${user[index].name}',
+                                        name: user[index].name,
                                         age: user[index].age,
-                                        id: '${user[index].id}'),
+                                        id: user[index].id),
                                   ),
                                 ),
                               );
@@ -102,3 +102,33 @@ class _EditUserControlsState extends State<EditUserControls> {
     return Center();
   }
 }
+// Widget streamData(BuildContext context, int index){
+// return InkWell(
+//                     onTap: () {},
+//                     child: Card(
+//                       color: Colors.blue,
+//                       child: Padding(
+//                         padding: const EdgeInsets.all(8.0),
+//                         child: ListTile(
+//                           title: Text('Name is ${user[index].name}'),
+//                           subtitle: Text('Age is ${user[index].age}'),
+//                           trailing: IconButton(
+//                             icon: Icon(Icons.edit_outlined),
+//                             onPressed: () {
+//                               Navigator.of(context).push(
+//                                 MaterialPageRoute(
+//                                   builder: (context) => EditPageDetails(
+//                                     user: UserModel(
+//                                         name: {user[index].name},
+//                                         age: user[index].age,
+//                                         id: {user[index].id}),
+//                                   ),
+//                                 ),
+//                               );
+//                             },
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   );
+// }

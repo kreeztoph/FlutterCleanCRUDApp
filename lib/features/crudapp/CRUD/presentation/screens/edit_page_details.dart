@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable
-
 import 'package:firebasecrud/features/crudapp/CRUD/data/models/user_model.dart';
+import 'package:firebasecrud/injection_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditPageDetails extends StatelessWidget {
   final UserModel user;
@@ -9,9 +9,9 @@ class EditPageDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? nameInput = '${user.name}';
+    String? nameInput = user.name;
     int? ageInput = user.age;
-    String usermodelid = '${user.id}';
+    String? usermodelid = user.id;
     final screensize = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -30,7 +30,10 @@ class EditPageDetails extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   'Edit ${user.name}',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(
@@ -70,7 +73,11 @@ class EditPageDetails extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
-                      onPressed: () {},
+                      onPressed: () {
+                        print(nameInput);
+                        print(ageInput);
+                        print(usermodelid);
+                      },
                       child: const Text('Edit Data'),
                     ),
                   ),
